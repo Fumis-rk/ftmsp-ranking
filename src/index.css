@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-ftmsp-light text-ftmsp-gray;
+  font-family: Arial, sans-serif;
+}

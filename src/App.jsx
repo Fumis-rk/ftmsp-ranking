@@ -25,15 +25,15 @@ export default function App() {
     .sort((a, b) => Number(b.Total) - Number(a.Total));
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 text-black p-6">
-      <h1 className="text-3xl font-bold text-center mb-6 text-red-600">
+    <div className=\"min-h-screen bg-ftmsp-light p-6\">
+      <h1 className=\"text-4xl font-bold text-center mb-8 text-ftmsp-red\">
         Ranking FTMSP 2025
       </h1>
 
       {/* Seletor de categorias */}
-      <div className="flex justify-center mb-6">
+      <div className=\"flex justify-center mb-6\">
         <select
-          className="p-2 rounded bg-white border border-gray-400"
+          className=\"p-2 rounded border border-ftmsp-gray bg-white text-ftmsp-gray font-medium\"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
@@ -46,47 +46,50 @@ export default function App() {
       </div>
 
       {/* Lista de atletas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6\">
         {athletes.map((ath, idx) => (
           <div
             key={idx}
-            className="cursor-pointer bg-white shadow hover:shadow-lg border border-gray-300 p-4 rounded"
+            className=\"cursor-pointer bg-white shadow-lg border border-gray-300 p-4 rounded-lg hover:scale-105 transition-transform\"
             onClick={() => setSelectedAthlete(ath)}
           >
-            <h2 className="text-lg font-semibold text-gray-900">{ath.Atleta}</h2>
-            <p className="text-sm text-gray-600">Clube: {ath.Clube}</p>
-            <p className="text-sm text-gray-600">Ranking: {ath.Ranking}</p>
-            <p className="text-sm text-red-600 font-bold">
+            <h2 className=\"text-lg font-bold text-ftmsp-gray\">{ath.Atleta}</h2>
+            <p className=\"text-sm text-gray-600\">Clube: {ath.Clube}</p>
+            <p className=\"text-sm text-gray-600\">Ranking: {ath.Ranking}</p>
+            <p className=\"text-md text-ftmsp-red font-bold\">
               Pontos: {ath.Total}
             </p>
           </div>
         ))}
       </div>
 
-      {/* Modal simples */}
+      {/* Modal */}
       {selectedAthlete && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-          <div className="bg-white p-6 rounded max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4">
-              {selectedAthlete.Atleta} ({selectedAthlete.Categoria})
+        <div className=\"fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4\">
+          <div className=\"bg-white p-6 rounded-lg max-w-md w-full shadow-xl\">
+            <h2 className=\"text-2xl font-bold mb-4 text-ftmsp-red\">
+              {selectedAthlete.Atleta}
             </h2>
-            <div className="space-y-2">
+            <p className=\"mb-2 text-ftmsp-gray\">
+              Categoria: {selectedAthlete.Categoria}
+            </p>
+            <div className=\"space-y-2\">
               {Object.keys(selectedAthlete)
-                .filter((key) => key.startsWith("Etapa"))
+                .filter((key) => key.startsWith(\"Etapa\"))
                 .map((etapa) => (
                   <div
                     key={etapa}
-                    className="flex justify-between border-b pb-1"
+                    className=\"flex justify-between border-b pb-1 text-ftmsp-gray\"
                   >
                     <span>{etapa}</span>
-                    <span className="font-semibold text-gray-700">
+                    <span className=\"font-semibold\">
                       {selectedAthlete[etapa]}
                     </span>
                   </div>
                 ))}
             </div>
             <button
-              className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+              className=\"mt-6 bg-ftmsp-red hover:bg-red-700 text-white px-4 py-2 rounded\"
               onClick={() => setSelectedAthlete(null)}
             >
               Fechar
